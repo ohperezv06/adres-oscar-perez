@@ -1,0 +1,61 @@
+.create-acquisition-container
+  display: flex
+  justify-content: center
+
+  .white-container
+    background-color: #ffffff
+    width: 100%
+    max-width: 800px
+
+    .title
+      text-align: center
+
+    .container
+      display: flex
+      justify-content: center
+      padding: 30px
+
+      .form
+        width: 100%
+
+        .form-row
+          display: flex
+          flex-wrap: wrap
+          justify-content: space-between
+          margin-bottom: 20px
+
+          .form-group
+            flex-basis: calc(50% - 20px)
+            margin-bottom: 10px
+
+            label
+              display: block
+              margin-bottom: 5px
+
+            input
+              display: block
+              width: calc(100% - 5px)
+
+          .clear-form
+            display: flex
+            justify-content: flex-end
+            align-items: flex-end
+            a
+              cursor: pointer
+
+        .buttons-container
+          display: flex
+          justify-content: center
+
+          button
+            width: 150px
+
+          button:first-child
+            margin-right: 50px
+
+        @media (max-width: 768px)
+          .form-row
+            margin-bottom: 0
+            .form-group
+              flex-basis: 100%
+

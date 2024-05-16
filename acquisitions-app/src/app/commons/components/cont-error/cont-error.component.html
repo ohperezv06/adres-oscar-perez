@@ -1,0 +1,9 @@
+<div *ngIf="errors && touched">
+    <div *ngFor="let error of Object.keys(errors)">
+        <div>
+            <span class="error-text">
+            {{ getErrorMessage(error, errors[error]) }}
+            </span>
+        </div>
+    </div>
+</div>

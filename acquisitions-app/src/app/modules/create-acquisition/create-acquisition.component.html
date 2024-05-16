@@ -1,0 +1,74 @@
+<div class="create-acquisition-container">
+    <div class="white-container">
+        <div class="title">
+            <h2>Registro de adquisiciones</h2>
+        </div>
+        <hr/>
+        <div class="container">
+            <form class="form" [formGroup]="formCreateAcquisition" (ngSubmit)="onSubmit()">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="budget-field">Presupuesto</label>
+                        <input type="number" id="budget-field" formControlName="budget">
+                        <app-cont-error [errors]="budget.errors" [touched]="budget.touched"></app-cont-error>
+                    </div>
+                    <div class="form-group">
+                        <label for="unit-field">Unidad</label>
+                        <input type="text" id="unit-field" formControlName="unit" autocapitalize="on">
+                        <app-cont-error [errors]="unit.errors" [touched]="unit.touched"></app-cont-error>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="type-field">Tipo de Bien o Servicio</label>
+                        <input type="text" id="type-field" formControlName="type" autocapitalize="on">
+                        <app-cont-error [errors]="type.errors" [touched]="type.touched"></app-cont-error>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity-field">Cantidad</label>
+                        <input type="number" id="quantity-field" formControlName="quantity">
+                        <app-cont-error [errors]="quantity.errors" [touched]="quantity.touched"></app-cont-error>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="unitPrice-field">Valor Unitario</label>
+                        <input type="number" id="unitPrice-field" formControlName="unitPrice">
+                        <app-cont-error [errors]="unitPrice.errors" [touched]="unitPrice.touched"></app-cont-error>
+                    </div>
+                    <div class="form-group">
+                        <label for="totalValue-field">Valor Total</label>
+                        <input type="number" id="totalValue-field" formControlName="totalValue">
+                        <app-cont-error [errors]="totalValue.errors" [touched]="totalValue.touched"></app-cont-error>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="acquisitionDate-field">Fecha de Adquisición</label>
+                        <input type="date" id="acquisitionDate-field" formControlName="acquisitionDate">
+                        <app-cont-error [errors]="acquisitionDate.errors" [touched]="acquisitionDate.touched"></app-cont-error>
+                    </div>
+                    <div class="form-group">
+                        <label for="provider-field">Proveedor</label>
+                        <input type="text" id="provider-field" formControlName="provider" autocapitalize="on">
+                        <app-cont-error [errors]="provider.errors" [touched]="provider.touched"></app-cont-error>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="documentation-field">Documentación</label>
+                        <input type="text" id="documentation-field" formControlName="documentation" autocapitalize="on">
+                        <app-cont-error [errors]="documentation.errors" [touched]="documentation.touched"></app-cont-error>
+                    </div>
+                    <div class="form-group clear-form">
+                        <a (click)="resetForm()">Limpiar formulario</a>
+                    </div>
+                </div>
+                <div class="buttons-container">
+                    <button class="btn btn-secondary" type="button" (click)="goToHome()">Volver</button>
+                    <button class="btn btn-primary" type="submit" [disabled]="formCreateAcquisition.invalid">{{buttonName}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,108 @@
+<div class="home-container">
+    <form [formGroup]=formHome>
+        <div class="searchbar-container">
+            <input type="text" formControlName="searchTerm" placeholder="Busca por tipo de adquisición">
+            <button class="btn btn-primary" (click)="goToCreateAcquisition()">Nueva Adquisición</button>
+        </div>
+        <div class="acquisitions-container">
+            <div class="acquisitions-table-container">
+                <table class="acquisitions-table">
+                    <thead>
+                    <tr>
+                        <th>Unidad</th>
+                        <th>Tipo de Bien o Servicio</th>
+                        <th>Presupuesto</th>
+                        <th>Cantidad</th>
+                        <th>Valor Unitario</th>
+                        <th>Valor Total</th>
+                        <th>Fecha de Adquisición</th>
+                        <th>Proveedor</th>
+                        <th>Documentación</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let acquisition of (acquisitions$ | async)?.acquisitions!
+                    | slice: ((currentPage - 1) * itemsPerPage.value) : (currentPage * itemsPerPage.value)
+                    | filter: searchTerm.value: 'type'; trackBy: trackByTo">
+                        <td>{{acquisition.unit}}</td>
+                        <td>{{acquisition.type}}</td>
+                        <td class="text-right">{{acquisition.budget | currency}}</td>
+                        <td class="text-right">{{acquisition.quantity}}</td>
+                        <td class="text-right">{{acquisition.unitPrice | currency}}</td>
+                        <td class="text-right">{{acquisition.totalValue | currency}}</td>
+                        <td>{{acquisition.acquisitionDate | date}}</td>
+                        <td>{{acquisition.provider}}</td>
+                        <td>{{acquisition.documentation}}</td>
+                        <td>
+                            <div class="icons-container">
+                                <i class="fa-solid fa-clock-rotate-left" (click)="showHistory(acquisition.id)"
+                                   title="Historial"></i>
+                                <i class="fa-solid fa-pen-to-square" (click)="goToEdit(acquisition.id)"
+                                   title="Editar"></i>
+                                <i class="fa-solid fa-trash-can delete-icon"
+                                   (click)="confirmationDelete(acquisition.id)" title="Eliminar"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="separator-line"></div>
+            <div class="acquisitions-summary">
+                <span>{{quantityItems}} resultados</span>
+                <div class="paginator">
+                    <button (click)="previousPage()"><< Anterior</button>
+                    <span class="page-indicator">{{currentPage}} / {{totalPages}}</span>
+                    <button (click)="nextPage()">Siguiente >></button>
+                </div>
+                <select formControlName="itemsPerPage">
+                    <option *ngFor="let itemsPerPage of itemsPerPageList"
+                            [value]="itemsPerPage">{{ itemsPerPage }}</option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>
+
+<app-modal>
+    <div class="acquisition-history-container">
+        <div class="title-history">
+            <h2>Historial de cambios</h2>
+        </div>
+        <div class="acquisitions-table-container">
+            <table class="acquisitions-table">
+                <thead>
+                <tr>
+                    <th>Id Adquisición</th>
+                    <th>Acción</th>
+                    <th>Detalle</th>
+                    <th>Fecha</th>
+                    <th>Información de adquisición</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let historyItem of (acquisitionHistory$ | async)?.acquisitionHistoryLog!">
+                    <td>{{historyItem.acquisition_id}}</td>
+                    <td>{{historyItem.action}}</td>
+                    <td>{{historyItem.detail}}</td>
+                    <td>{{historyItem.date | date}}</td>
+                    <td class="detail-acquisition-history">
+                        <div>
+                            <span><strong>Unidad: </strong>{{historyItem.acquisition_info.unit}}</span>
+                            <span><strong>Tipo de Bien o Servicio: </strong>{{historyItem.acquisition_info.type}}</span>
+                            <span><strong>Presupuesto: </strong>{{historyItem.acquisition_info.budget}}</span>
+                            <span><strong>Cantidad: </strong>{{historyItem.acquisition_info.quantity}}</span>
+                            <span><strong>Valor Unitario: </strong>{{historyItem.acquisition_info.unitPrice}}</span>
+                            <span><strong>Valor Total: </strong>{{historyItem.acquisition_info.totalValue}}</span>
+                            <span><strong>Fecha de Adquisición: </strong>{{historyItem.acquisition_info.acquisitionDate}}</span>
+                            <span><strong>Proveedor: </strong>{{historyItem.acquisition_info.provider}}</span>
+                            <span><strong>Documentación: </strong>{{historyItem.acquisition_info.documentation}}</span>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</app-modal>

@@ -1,0 +1,6 @@
+<div class="modal" [class.open]="modalService.isOpen$ | async">
+    <div class="modal-content">
+        <span class="close" (click)="modalService.closeModal()">&times;</span>
+        <ng-content></ng-content>
+    </div>
+</div>

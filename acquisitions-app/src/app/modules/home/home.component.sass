@@ -1,0 +1,85 @@
+.home-container
+  padding: 0 60px 60px
+
+  .searchbar-container
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
+    margin-bottom: 8px
+
+    input
+      width: 200px
+
+.acquisitions-container
+  background-color: #ffffff
+  padding: 16px 16px 20px
+  border-radius: 4px
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3)
+
+.acquisitions-table-container
+  max-width: 100%
+  overflow-x: auto
+
+  .acquisitions-table
+    width: 100%
+    border-collapse: collapse
+
+    thead
+      background-color: #f9fafc
+      height: 60px
+      text-align: left
+      tr
+        border-bottom: 1px solid #ecebf1
+        th
+          padding-left: 10px
+        th:first-child
+          padding-left: 0
+
+    tbody
+      tr
+        height: 80px
+        border-bottom: 1px solid #ecebf1
+        td
+          padding-left: 10px
+        td:first-child
+          padding-left: 0
+
+      .icons-container
+        font-size: 16px
+        display: flex
+        i
+          padding-left: 10px
+          color: #4f68b1
+          &:hover
+            color: #12d6af
+            cursor: pointer
+          &.delete-icon:hover
+            color: #ff0000
+
+.acquisitions-summary
+  display: flex
+  justify-content: space-between
+
+  select
+    width: 50px
+
+  .paginator
+    display: flex
+    align-items: center
+    justify-content: center
+
+    .page-indicator
+      margin: 0 20px
+
+    button
+      height: 30px
+      border: 1px solid #cecdd2
+      border-radius: 4px
+      width: 100px
+
+.detail-acquisition-history
+  div
+    display: flex
+    flex-direction: column
+    padding: 10px 0 10px 10px
